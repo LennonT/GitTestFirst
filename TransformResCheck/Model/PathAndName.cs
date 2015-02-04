@@ -10,14 +10,14 @@ namespace TransformResCheck.Model
     {
         private static PathAndName _instance;
 
-        public Dictionary<string, string> resxFileNames;    //生成的各个资源文件名字
+        public static readonly Dictionary<string, string> resxFileNames;    //生成的各个资源文件名字
 
-        public readonly string Path = "C:\\Users\\Lennon\\Desktop\\";
-        public readonly string KeyExcelName = "标准翻译.xlsx";
-        public readonly string DataExcelName = "test.xlsx";
-        public readonly string sheetName = "Sheet1";        
+        public static readonly string Path = "C:\\Users\\Lennon\\Desktop\\";
+        public static readonly string KeyExcelName = "标准翻译.xlsx";
+        public static readonly string DataExcelName = "test.xlsx";
+        public static readonly string sheetName = "Sheet1";
 
-        private PathAndName ()
+        static PathAndName ()
         {
             resxFileNames = new Dictionary<string, string>();
             resxFileNames.Add("en", "CommonRes.resx");          //英语
@@ -31,16 +31,5 @@ namespace TransformResCheck.Model
             resxFileNames.Add("pt", "CommonRes.pt.resx");       //巴西葡语
             resxFileNames.Add("hk", "CommonRes.zh-HK.resx");    //香港繁体
         }
-
-        public static PathAndName getInstance() {
-            if (_instance == null)
-            {
-                _instance = new PathAndName();
-            }
-
-            return _instance;
-        }
-
-
     }
 }

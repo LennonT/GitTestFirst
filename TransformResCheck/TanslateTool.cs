@@ -36,8 +36,8 @@ namespace TransformResCheck
 
         private void ReadExcelBtn_Click(object sender, EventArgs e)
         {
-            string pathName = PathAndName.getInstance().Path + PathAndName.getInstance().DataExcelName;
-            string sheetName = PathAndName.getInstance().sheetName;
+            string pathName = PathAndName.Path + PathAndName.DataExcelName;
+            string sheetName = PathAndName.sheetName;
 
             ExcelReading er = new ExcelReading(pathName, sheetName, "NO");
 
@@ -53,7 +53,7 @@ namespace TransformResCheck
             IOresx iox = new IOresx();
             if (dtable != null)
             {
-                string pathName = PathAndName.getInstance().Path + PathAndName.getInstance().resxFileNames["en"];
+                string pathName = PathAndName.Path + PathAndName.resxFileNames["en"];
                 iox.WritePairToResx(pathName, dtable);  //输出为英文的资源
             }
         }
