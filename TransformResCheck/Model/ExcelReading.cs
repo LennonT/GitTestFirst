@@ -34,7 +34,7 @@ namespace TransformResCheck.Model
         {
             try
             {
-                string strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Extended Properties='Excel 12.0;HDR=" + HDR + "';data source=" + pathName;
+                string strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Extended Properties=\'Excel 12.0;HDR=" + HDR + "\';Data Source=" + pathName;
                 OleDbConnection OleConn = new OleDbConnection(strConn);
                 OleConn.Open();
 

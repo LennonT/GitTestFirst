@@ -24,10 +24,6 @@ namespace TransformResCheck
         public TanslateTool()
         {
             InitializeComponent();
-            //读入标准Excel表中内容
-            string pathName = PathAndName.Path + PathAndName.KeyExcelName;
-            string sheetName = PathAndName.sheetName;
-            keyTable = getData(pathName, sheetName);
         }
 
         //遍历整个表，来输出
@@ -46,10 +42,15 @@ namespace TransformResCheck
         private void ReadExcelBtn_Click(object sender, EventArgs e)
         {
             string pathName = GetPathNameByChoose();
-            string sheelName = PathAndName.sheetName;
-            userTable = getData(pathName, sheelName);
+            string sheetName = PathAndName.sheetName;
+            userTable = getData(pathName, sheetName);
 
             this.dgv.DataSource = userTable;
+
+            //读入标准Excel表中内容
+            pathName = PathAndName.Path + PathAndName.KeyExcelName;
+            sheetName = PathAndName.sheetName;
+            keyTable = getData(pathName, sheetName);
         }
 
         //点击后，根据当前用户数据，生成Resx文件
@@ -74,9 +75,6 @@ namespace TransformResCheck
             //根据设定的规则，使用标准表，对用户表进行检查
             //修改userTable的内容
             //CheckRules
-
-
-
 
         }
 
