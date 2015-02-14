@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+
 
 namespace PackageConfigCheck
 {
@@ -114,7 +116,12 @@ namespace PackageConfigCheck
         #endregion 解压缩函数
 
         #region xml文件读取相关函数
-        XMLReader
+        private void readXML(string fileName)
+        {
+            
+        }
+
+
         #endregion xml 文件读取相关函数
 
 
