@@ -28,7 +28,7 @@ namespace TransformResCheck.Model
         /// </summary>
         /// <param name="filePath">Excel文件路径和名字</param>
         /// <param name="sheetName">需要读取的Sheet名</param>
-        /// <param name="HDR"> 首行是否为有效数据，NO:有效，YES：无效</param>
+        /// <param name="HDR"> 前几行是否有无效数据，NO:无，YES：有(;IMEX=1)</param>
         /// <returns></returns>
         public System.Data.DataTable ReadExcel(string pathName, string sheetName, string HDR="NO")
         {

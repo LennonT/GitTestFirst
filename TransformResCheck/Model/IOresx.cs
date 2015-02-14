@@ -32,7 +32,7 @@ namespace TransformResCheck.Model
 
 
 
-
+        //读取哪些列作为相应的数据
         public IOresx(int key=0, int value=1, int comment=2)
         {
             keIndex = key;
@@ -49,7 +49,7 @@ namespace TransformResCheck.Model
             foreach (DataRow item in dt.Rows)
             {
                 rdn = new ResXDataNode(Convert.ToString(item[keIndex]), Convert.ToString(item[valueIndex]));
-                rdn.Comment = Convert.ToString(item[commentIndex]);
+                rdn.Comment = Convert.ToString(item[commentIndex]);                
                 writer.AddResource(rdn);
             }
 

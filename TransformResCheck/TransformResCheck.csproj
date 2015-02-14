@@ -104,6 +104,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CheckRules.cs" />
     <Compile Include="Model\ContentCheck.cs" />
     <Compile Include="Model\ExcelReading.cs" />
     <Compile Include="Model\PathAndName.cs" />

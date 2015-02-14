@@ -74,7 +74,7 @@
             this.CheckBtn.UseVisualStyleBackColor = true;
             this.CheckBtn.Click += new System.EventHandler(this.CheckBtn_Click);
             // 
-            // CheckExcel
+            // TanslateTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +83,7 @@
             this.Controls.Add(this.ToResxBtn);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.ReadBtn);
-            this.Name = "CheckExcel";
+            this.Name = "TanslateTool";
             this.Text = "TansCheck";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
