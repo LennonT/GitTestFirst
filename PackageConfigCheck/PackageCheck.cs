@@ -33,6 +33,11 @@ namespace PackageConfigCheck
         private static string manifestFileName = "WMAppManifest.xml";
         private static string manifestFileName_full = path + @"\" + manifestFileName;
 
+        /// <summary>
+        /// 用以记录发生的错误
+        /// </summary>
+        private static ErrorInfo ErrorContainer = new ErrorInfo();
+
 
         public PackageCheck()
         {
@@ -59,7 +64,7 @@ namespace PackageConfigCheck
 
                 System.IO.File.Copy(fileDialog.FileName, zipFileName_full);
                 //MessageBox.Show("拷贝并重命名成功...");
-                ShowResult("拷贝并重命名成功...");
+                TextOutput("拷贝并重命名完成...");
             }         
         }
 
@@ -74,6 +79,11 @@ namespace PackageConfigCheck
             //检查manifest文件
             Read_Check_XML(manifestFileName_full);
 
+            //检查。。。
+
+
+            //显示最后结果
+            ShowResult();
 
         }
 
@@ -106,7 +116,7 @@ namespace PackageConfigCheck
         /// 将指定文件解压出来
         /// </summary>
         /// <param name="configFileName"> 想要解压缩得到的文件名 </param>
-        private void UnZip(string configFileName)
+        private bool UnZip(string configFileName)
         {
             using (ZipFile zip = ZipFile.Read(zipFileName_full))
             {
@@ -121,12 +131,13 @@ namespace PackageConfigCheck
                         }
 
                         z.Extract(path);
-                        ShowResult("解压缩[ " + configFileName + " ]成功...");
-                        return;
+                        TextOutput("解压缩[ " + configFileName + " ]成功...");
+                        return true;
                     }
                 }
 
                 MessageBox.Show("未找到文件[ " + configFileName + " ]");
+                return false;
             }
 
         }
@@ -134,95 +145,192 @@ namespace PackageConfigCheck
         #endregion 解压缩函数
 
         #region xml文件读取相关函数
-        private void Read_Check_XML(string fileName)
+        private bool  Read_Check_XML(string fileName)
         {
             XmlHandle xh = new XmlHandle();
             xh.TravesalXML(fileName);   //遍历各项
 
-            #region 各个判断项目（UI结果显示）
+            
+            //各个判断项目（UI结果显示）   均需要执行一遍         
+            if (CheckOEM(xh.OEM_State) &   //判断OEM权限
 
-
-            //判断OEM权限
-            if (xh.OEM_State)
+                                            //Capbilities检查
+            
+                CheckVersionStr(xh.VersionStr) &  //版本号获得
+            
+                CheckLanguage(xh.Languages) &   //语言检查
+            
+                CheckStartPage(xh.StatePage) &   //启动入口检查
+            
+                CheckAppName(xh.AppName) &       //应用名称
+            
+                CheckProductID(xh.ProductID) &       //检查产品ID号
+            
+                CheckPublisherID(xh.PublisherID))    //检查发行商ID号
             {
-                ShowResult("OEM开关打开...");
-            }
-            else
-            {
-                MessageBox.Show("注意，OEM权限未打开");
-            }
+                return true;   //全部通过时，返回true
+            }                  //否则，返回false，检查失败
 
-            //Capbilities检查
-
-
-
-            //版本号获得
-            ShowResult("当前版本号为[ " + xh.VersionStr + " ]");
-
-
-            //语言检查
-            if(xh.Languages.Count == 12)   //包含12种语言(9种实际,繁中多1，英语多1，泰语多1)
-            {
-                //和标准进行对比，并确认所有语言都已添加上
-                foreach(var item in InfoDict.LanguageTemplate)
-                {
-                    if(xh.Languages.Contains(item))
-                    {
-                        xh.Languages.Remove(item);
-                    }
-                }
-
-                if (xh.Languages.Count == 0)
-                {
-                    ShowResult("语言检查通过...");
-                }
-                else
-                {
-                    MessageBox.Show("语言检查失败");
-                }
-            }
-            else
-            {
-                MessageBox.Show("语言门数不对...");
-            }
-
-            //启动入口检查
-            if (xh.StatePage == "/Views/Camera/CameraPage.xaml")
-            {
-                ShowResult("启动入口到相机页，正确...");
-            }
-            else
-            {
-                MessageBox.Show("启动入口不是到相机...");
-            }
-
-            //应用名称
-            if (xh.AppName == "Camera360 Sight")
-            {
-                ShowResult("应用名称，正确...");
-            }
-            else
-            {
-                MessageBox.Show("应用名称错误...");
-            }
-
-
-
-
-            #endregion
-
+            return false;
         }
 
 
         #endregion xml 文件读取相关函数
 
+        #region private小工具函数
 
-        private void ShowResult(string message)
+        /// <summary>
+        /// 像UI显示输出检测过程信息
+        /// </summary>
+        /// <param name="message"> 消息内容 </param>
+        /// <param name="success"> 是否为检测成功的消息</param>
+        private void TextOutput(string message, bool success = true)
         {
-            this.ResultShowTextBox.AppendText(message + Environment.NewLine + Environment.NewLine);
+            if (success)
+            {
+                this.ResultShowTextBox.AppendText("------- " + message + Environment.NewLine + Environment.NewLine);
+            }
+            else  //检测失败时
+            {
+                this.ResultShowTextBox.AppendText("x x x x " + message + Environment.NewLine + Environment.NewLine);
+                ErrorContainer.AddErrorInfo(message + Environment.NewLine + Environment.NewLine);
+            }
+            
 
             System.Threading.Thread.Sleep(800);
         }
+
+        private bool CheckOEM(bool oem_state)
+        {
+            if (oem_state)
+            {
+                TextOutput("OEM开关打开...");
+                return true;
+            }
+            else
+            {
+                TextOutput("注意，OEM权限未打开",false);
+                return false;
+            }
+        }
+
+        private bool CheckVersionStr(string version_str)
+        {
+            if (version_str == "1.1.1.0")
+            {
+                TextOutput("版本号正确，当前版本号为[ " + version_str + " ]");
+                return true;
+            }
+            else
+            {
+                TextOutput("版本号错误", false);
+                return false;
+            }            
+        }
+
+        private bool CheckLanguage(List<string> langs)
+        {
+            if (langs.Count == 12)   //包含12种语言(9种实际,繁中多1，英语多1，泰语多1)
+            {
+                //和标准进行对比，并确认所有语言都已添加上
+                foreach (var item in InfoDict.LanguageTemplate)
+                {
+                    if (langs.Contains(item))
+                    {
+                        langs.Remove(item);
+                    }
+                }
+
+                if (langs.Count == 0)
+                {
+                    TextOutput("语言检查通过...");
+                    return true;
+                }
+                else
+                {
+                    TextOutput("语言检查失败", false);
+                    return false;
+                }
+            }
+            else
+            {
+                TextOutput("语言门数不对...", false);
+                return false;
+            }
+        }
+
+        private bool CheckStartPage(string start)
+        {
+            if (start == "/Views/Camera/CameraPage.xaml")
+            {
+                TextOutput("启动入口到相机页，正确...");
+                return true;
+            }
+            else
+            {
+                TextOutput("启动入口不是到相机...", false);
+                return false;
+            }
+        }
+
+        private bool CheckAppName(string name)
+        {
+            if (name == "Camera360 Sight")
+            {
+                TextOutput("应用名称，正确...");
+                return true;
+            }
+            else
+            {
+                TextOutput("应用名称错误...", false);
+                return false;
+            }
+        }
+
+        private bool CheckProductID(string id)
+        {
+            if (id == "{4daadbfb-d834-487f-897a-5e5f249022f8}")
+            {
+                TextOutput("产品ID正确...");
+                return true;
+            }
+            else
+            {
+                TextOutput("产品ID错误...", false);
+                return false;
+            }
+        }
+
+        private bool CheckPublisherID(string id)
+        {
+            if (id == "{c420aca1-c8f6-457b-8014-350ae95e1e98}")
+            {
+                TextOutput("发行商ID正确...");
+                return true;
+            }
+            else
+            {
+                TextOutput("发行商ID错误...", false);
+                return false;
+            }
+        }
+
+        private void ShowResult()
+        {
+            if (ErrorContainer.ErrorCounter == 0)
+            {
+                MessageBox.Show("检测完成，全部成功！");
+            }
+            else
+            {
+                MessageBox.Show("检查完成，共发生[ " + ErrorContainer.ErrorCounter + " ]个错误: \r\n\r\n" + ErrorContainer.ErrorMessage);
+                ErrorContainer.Reset();
+            }
+        }
+
+
+
+        #endregion
 
 
     }

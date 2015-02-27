@@ -34,8 +34,14 @@ namespace PackageConfigCheck.Model
         /// </summary>
         public string StatePage;
 
+        /// <summary>
+        /// 应用显示名称
+        /// </summary>
         public string AppName;
 
+        public string ProductID;
+
+        public string PublisherID;
 
 
         public XmlHandle()
@@ -46,6 +52,8 @@ namespace PackageConfigCheck.Model
             Languages = new List<string>();
             StatePage = "";
             AppName = "";
+            ProductID = "";
+            PublisherID = "";
         }
 
         /// <summary>
@@ -73,6 +81,9 @@ namespace PackageConfigCheck.Model
                             case "App":
                                 VersionStr = xr["Version"];  //获得manifest中版本号字段
                                 AppName = xr["Title"];       //获得应用名称
+                                ProductID = xr["ProductID"];   //获得产品ID号
+                                PublisherID = xr["PublisherID"]; //获得发行商ID号
+
                                 break;
 
                             case "Language":                 //各语言项

@@ -48,9 +48,9 @@
             // 
             this.PackageCheckBtn.Location = new System.Drawing.Point(130, 36);
             this.PackageCheckBtn.Name = "PackageCheckBtn";
-            this.PackageCheckBtn.Size = new System.Drawing.Size(75, 23);
+            this.PackageCheckBtn.Size = new System.Drawing.Size(102, 23);
             this.PackageCheckBtn.TabIndex = 1;
-            this.PackageCheckBtn.Text = "检查";
+            this.PackageCheckBtn.Text = "检查  Manifest";
             this.PackageCheckBtn.UseVisualStyleBackColor = true;
             this.PackageCheckBtn.Click += new System.EventHandler(this.PackageCheckBtn_Click);
             // 
