@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageCheck));
             this.ChooseBtn = new System.Windows.Forms.Button();
             this.PackageCheckBtn = new System.Windows.Forms.Button();
             this.ResultShowTextBox = new System.Windows.Forms.TextBox();
@@ -56,18 +57,25 @@
             // ResultShowTextBox
             // 
             this.ResultShowTextBox.Location = new System.Drawing.Point(26, 100);
+            this.ResultShowTextBox.MaximumSize = new System.Drawing.Size(300, 500);
+            this.ResultShowTextBox.MinimumSize = new System.Drawing.Size(150, 100);
+            this.ResultShowTextBox.Multiline = true;
             this.ResultShowTextBox.Name = "ResultShowTextBox";
-            this.ResultShowTextBox.Size = new System.Drawing.Size(334, 21);
+            this.ResultShowTextBox.ReadOnly = true;
+            this.ResultShowTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ResultShowTextBox.Size = new System.Drawing.Size(300, 298);
             this.ResultShowTextBox.TabIndex = 2;
             // 
             // PackageCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(564, 459);
             this.Controls.Add(this.ResultShowTextBox);
             this.Controls.Add(this.PackageCheckBtn);
             this.Controls.Add(this.ChooseBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PackageCheck";
             this.Text = "PackageCheck";
             this.ResumeLayout(false);
