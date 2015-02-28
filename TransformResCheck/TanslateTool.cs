@@ -21,7 +21,7 @@ namespace TransformResCheck
         private DataTable keyTable;
 
 
-        public TanslateTool()
+        public TanslateTool() 
         {
             InitializeComponent();
         }

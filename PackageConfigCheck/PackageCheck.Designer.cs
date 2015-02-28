@@ -87,7 +87,7 @@
 
         private System.Windows.Forms.Button ChooseBtn;
         private System.Windows.Forms.Button PackageCheckBtn;
-        private System.Windows.Forms.TextBox ResultShowTextBox;
+        internal System.Windows.Forms.TextBox ResultShowTextBox;
     }
 }
 

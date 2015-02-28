@@ -31,7 +31,6 @@ namespace TransformResCheck.Model
         private int commentIndex;
 
 
-
         //读取哪些列作为相应的数据
         public IOresx(int key=0, int value=1, int comment=2)
         {
