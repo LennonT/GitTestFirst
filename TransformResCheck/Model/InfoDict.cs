@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace TransformResCheck.Model
 {
-    public class PathAndName
+    internal static class InfoDict
     {
-        private static PathAndName _instance;
+        internal static readonly Dictionary<string, string> resxFileNames;    //生成的各语言版本，资源文件名字
 
-        public static readonly Dictionary<string, string> resxFileNames;    //生成的各个资源文件名字
+        internal static readonly string Path = @"C:\Users\Lennon\Desktop\Workspace";   //工作目录
+        internal static readonly string StandardExcelName = "标准翻译.xlsx";  //用于做为参考的Excel文件名字
+        internal static readonly string ForReadExcelName = "test.xlsx";        //目标Excel文件，用于读取
+        internal static readonly string ForWriteExcelName = "result.xlsx";     //写入到的Excel文件名字
 
-        public static readonly string Path = "C:\\Users\\Lennon\\Desktop\\";
-        public static readonly string KeyExcelName = "标准翻译.xlsx";
-        public static readonly string DataExcelName = "test.xlsx";
-        public static readonly string sheetName = "Sheet1";
+        internal static readonly string[] sheetName = {"Sheet1", "Sheet2"} ;  //各页面名字
 
-        static PathAndName ()
+        static InfoDict()
         {
             resxFileNames = new Dictionary<string, string>();
             resxFileNames.Add("en", "CommonRes.resx");          //英语
