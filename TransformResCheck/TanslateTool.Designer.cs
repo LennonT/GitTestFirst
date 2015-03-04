@@ -41,7 +41,7 @@
             // 
             // ReadExcelBtn
             // 
-            this.ReadExcelBtn.Location = new System.Drawing.Point(79, 20);
+            this.ReadExcelBtn.Location = new System.Drawing.Point(23, 20);
             this.ReadExcelBtn.Name = "ReadExcelBtn";
             this.ReadExcelBtn.Size = new System.Drawing.Size(75, 23);
             this.ReadExcelBtn.TabIndex = 0;
@@ -53,15 +53,16 @@
             // 
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(79, 121);
+            this.dgv.Location = new System.Drawing.Point(413, 20);
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 23;
-            this.dgv.Size = new System.Drawing.Size(1271, 397);
+            this.dgv.Size = new System.Drawing.Size(969, 509);
             this.dgv.TabIndex = 1;
             // 
             // ToResxBtn
             // 
-            this.ToResxBtn.Location = new System.Drawing.Point(335, 20);
+            this.ToResxBtn.Enabled = false;
+            this.ToResxBtn.Location = new System.Drawing.Point(279, 20);
             this.ToResxBtn.Name = "ToResxBtn";
             this.ToResxBtn.Size = new System.Drawing.Size(75, 23);
             this.ToResxBtn.TabIndex = 2;
@@ -71,17 +72,17 @@
             // 
             // CheckBtn
             // 
-            this.CheckBtn.Location = new System.Drawing.Point(187, 20);
+            this.CheckBtn.Location = new System.Drawing.Point(131, 20);
             this.CheckBtn.Name = "CheckBtn";
             this.CheckBtn.Size = new System.Drawing.Size(106, 23);
             this.CheckBtn.TabIndex = 3;
             this.CheckBtn.Text = "检查Excel内容";
             this.CheckBtn.UseVisualStyleBackColor = true;
-            this.CheckBtn.Click += new System.EventHandler(this.CheckBtn_Click);
+            this.CheckBtn.Click += new System.EventHandler(this.CheckExcelBtn_Click);
             // 
             // ReadResxBtn
             // 
-            this.ReadResxBtn.Location = new System.Drawing.Point(80, 78);
+            this.ReadResxBtn.Location = new System.Drawing.Point(24, 78);
             this.ReadResxBtn.Name = "ReadResxBtn";
             this.ReadResxBtn.Size = new System.Drawing.Size(75, 23);
             this.ReadResxBtn.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             // CheckResxBtn
             // 
-            this.CheckResxBtn.Location = new System.Drawing.Point(185, 79);
+            this.CheckResxBtn.Location = new System.Drawing.Point(129, 79);
             this.CheckResxBtn.Name = "CheckResxBtn";
             this.CheckResxBtn.Size = new System.Drawing.Size(108, 23);
             this.CheckResxBtn.TabIndex = 5;
@@ -101,7 +102,7 @@
             // 
             // ToExcelBtn
             // 
-            this.ToExcelBtn.Location = new System.Drawing.Point(335, 78);
+            this.ToExcelBtn.Location = new System.Drawing.Point(279, 78);
             this.ToExcelBtn.Name = "ToExcelBtn";
             this.ToExcelBtn.Size = new System.Drawing.Size(115, 23);
             this.ToExcelBtn.TabIndex = 6;
@@ -111,19 +112,19 @@
             // 
             // TipTxtBox
             // 
-            this.TipTxtBox.Location = new System.Drawing.Point(562, 12);
+            this.TipTxtBox.Location = new System.Drawing.Point(23, 121);
             this.TipTxtBox.Multiline = true;
             this.TipTxtBox.Name = "TipTxtBox";
             this.TipTxtBox.ReadOnly = true;
             this.TipTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TipTxtBox.Size = new System.Drawing.Size(528, 90);
+            this.TipTxtBox.Size = new System.Drawing.Size(371, 408);
             this.TipTxtBox.TabIndex = 7;
             // 
             // TanslateTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1389, 551);
+            this.ClientSize = new System.Drawing.Size(1405, 551);
             this.Controls.Add(this.TipTxtBox);
             this.Controls.Add(this.ToExcelBtn);
             this.Controls.Add(this.CheckResxBtn);
